@@ -1,0 +1,166 @@
+body {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+h1 {
+  color: white;
+  text-shadow: 4px 4px 6px #42445a;
+}
+
+.header-sticky {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #545454;
+  z-index: 10;
+}
+
+.footer {
+  background-color: #545454;
+  width: 100%;
+  height: 160px;
+}
+
+.under-header {
+  height: 160px;
+}
+
+.content {
+  margin-bottom: 100px;
+}
+
+.slogan {
+  font-size: calc(1rem + 1vw);
+}
+
+.main-logo {
+  max-height: 100px;
+}
+
+.datebt {
+  padding: .375rem .375rem .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border: 1px solid #ced4da;
+  border-radius: .375rem;
+}
+
+.btn-login {
+  background-color: #3684AB !important;
+  border: 2px solid   white !important;
+}
+
+.btn-login:hover {
+  color: #3684AB !important;
+  background-color: white !important;
+  border-color: #3684AB !important;
+}
+
+.container.content {
+  max-width: 1500px !important;
+}
+
+.footer a {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.footer a:hover {
+  color: #3684AB !important;
+}
+
+#shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 14;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.7;
+  visibility: hidden;
+}
+
+#login_window {
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 992px) {
+  .header-sticky {
+    height: 210px !important;
+  }
+  .under-header {
+    height: 210px;
+  }
+}
+
+.planeEmbr {
+  /* 586px dla Dreamlinera  266px dla EMBRAERA  374px dla BOEINGA*/
+  width: 266px;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid;
+  border-color: #3684AB;
+  background-color: white;
+}
+
+.planeBoeing {
+  width: 374px;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid;
+  border-color: #3684AB;
+  background-color: white;
+}
+
+.planeDream {
+  width: 586px;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid;
+  border-color: #3684AB;
+  background-color: white;
+}
+
+.empty {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 5px;
+  float: left;
+}
+
+.sit {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid black;
+  float: left;
+  cursor: pointer;
+  border-radius: 10px;
+  box-sizing: unset !important;
+}
+
+.sit:hover {
+  background-color: rgba(127, 255, 212, 0.336);
+  color: #35f8b7;
+  border-color: #35f8b7;
+}
+
+.sitClicked {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid #261ff5;
+  color: #261ff5;
+  background-color: rgba(38, 31, 245, 0.472);
+  float: left;
+  cursor: pointer;
+  border-radius: 10px;
+  box-sizing: unset !important;
+}
