@@ -9,17 +9,13 @@ loginBtn();
 
 document.getElementById("login-button-1").addEventListener("click",loginCheck);
 
-// document.getElementById("close_fly_window").addEventListener("click",toggleFlyWindow);
+document.getElementById("close_fly_window").addEventListener("click",toggleFlyWindow);
 
 document.getElementById("login-button-1").addEventListener("click",function (){
     if (document.title === "Miejsca"){
     location.href = "index.html";
     }
 });
-
-function goPage2() {
-    location.href = "page2.html";
-};
 
 function clickWyszukaj() {
     if (czyZalogowany === 1) {
