@@ -2,18 +2,49 @@ let dupaaa = ""; //powinno być "admin"
 let haslo111 = ""; //powinno być "1234"
 let czyZalogowany = 0;
 let wyszukajClick = 0;
+let aircraft = "";
+let flight_price = "0";
 
 loginBtn();
 
-function clickWyszukaj() {
-    wyszukajClick = 1;
-    if (czyZalogowany === 1 && document.getElementById("startCity").value !== "" && document.getElementById("destinationCity").value !== "" && document.getElementById("startDate").value !== "" && document.getElementById("startDate").value !== "passengersNumber") {
-        getValues();
-        location.href = "page2.html";
-    }   else {
-        getValues();
-        checkForm();
+document.getElementById("login-button-1").addEventListener("click",loginCheck);
+
+document.getElementById("close_fly_window").addEventListener("click",toggleFlyWindow);
+
+document.getElementById("login-button-1").addEventListener("click",function (){
+    if (document.title === "Miejsca"){
+    location.href = "index.html";
     }
+});
+
+function clickWyszukaj() {
+    if (czyZalogowany === 1) {
+        if (document.getElementById("startCity").value !== "" && document.getElementById("destinationCity").value !== "" && document.getElementById("startDate").value !== "" && document.getElementById("passengersNumber").value !== "") 
+        {
+            getValues();
+            // location.href = "page2.html";
+            toggleFlyWindow();
+        }
+    } else {
+        alert("Musisz być zalogowany żeby wyszukać lot!");
+    }
+
+    document.getElementById("flight_date").innerHTML=document.getElementById("startDate").value;
+    document.getElementById("flight_hour").innerHTML="17:00";
+    document.getElementById("flight_city").innerHTML=document.getElementById("startCity").value;
+    document.getElementById("flight_aircraft").innerHTML=`${aircraft}`;
+    document.getElementById("flight_price").innerHTML="645zł";
+
+
+
+    // wyszukajClick = 1;
+    // if (czyZalogowany === 1 && document.getElementById("startCity").value !== "" && document.getElementById("destinationCity").value !== "" && document.getElementById("startDate").value !== "" && document.getElementById("startDate").value !== "passengersNumber") {
+    //     getValues();
+    //     location.href = "page2.html";
+    // }   else {
+    //     getValues();
+    //     checkForm();
+    // }
 }
 
 function getValues() {
@@ -21,7 +52,7 @@ function getValues() {
     let destinationCity = document.getElementById("destinationCity").value;
     let startDate = document.getElementById("startDate").value;
     let passengersNumber = document.getElementById("passengersNumber").value;
-    let aircraft = ""
+
     if (destinationCity === "Wrocław" || destinationCity === "Katowice") {
         aircraft = "EMBRAER 170"
     }
@@ -37,7 +68,7 @@ function getValues() {
 }
 
 function checkForm() {
-    if (document.getElementById("startCity").value !== "" && document.getElementById("destinationCity").value !== "" && document.getElementById("startDate").value !== "" && document.getElementById("startDate").value !== "passengersNumber") {
+    if (document.getElementById("startCity").value !== "" && document.getElementById("destinationCity").value !== "" && document.getElementById("startDate").value !== "" && document.getElementById("passengersNumber").value !== "") {
         console.log("Warunek spełniony");
         toggleLogin();
     } else {
@@ -46,19 +77,33 @@ function checkForm() {
 }
 
 function toggleLogin() {
-    if (document.getElementById("login_window").classList.contains("visible")) {
+    console.log("wykonana funkcja: toggleLogin")
+    if (czyZalogowany===0) {
+        
+        if (document.getElementById("login_window").classList.contains("visible")) {
+            document.getElementById("login_window").classList.remove("visible");
+            document.getElementById("shadow").classList.remove("visible");
+        }
+        else{
+            document.getElementById("login_window").classList.add("visible");
+            document.getElementById("shadow").classList.add("visible");
+        }
+    }
+    
+    else {
         document.getElementById("login_window").classList.remove("visible");
         document.getElementById("shadow").classList.remove("visible");
-    }
-    else{
-        document.getElementById("login_window").classList.add("visible");
-        document.getElementById("shadow").classList.add("visible");
     }
 }
 
 function logowanie() {
+    console.log("wykonana funkcja: logowanie")
+
+
+    div_wyloguj = '<span class="me-3" style="color: white;"><i class="fa-solid fa-user me-2"></i>admin</span><button type="button" class="btn btn-primary btn-lg btn-login" onclick="toggleLogin()"><i class="fa-solid fa-right-from-bracket me-2"></i></i>Wyloguj</button>';
     dupaaa = document.getElementById("dupaWindow").value;
     haslo111 = document.getElementById("passwordWindow").value;
+
 
     console.log("wyszukajClick: " + wyszukajClick)
 
@@ -70,10 +115,11 @@ function logowanie() {
             else {
             console.log("czy zalogowany wynosi:" + czyZalogowany);
             toggleLogin();
+            element.innerHTML= div_wyloguj;
             }
         } 
         else {
-            alert("Email lub hasło nieprawidłowe!")
+            alert("Email lub hasło nieprawidłowe!");
         }
 }
 
@@ -207,10 +253,50 @@ function machen3() {
 }
 
 function loginBtn() {
+    console.log("wykonana funkcja: loginBtn")
+
     element = document.getElementById("login-button-1");
     div_zaloguj = '<button type="button" class="btn btn-primary btn-lg btn-login" onclick="toggleLogin()"><i class="fa-solid fa-user me-2"></i>Zaloguj</button>';
-    div_wyloguj = '<button type="button" class="btn btn-primary btn-lg btn-login" onclick="toggleLogin()"><i class="fa-solid fa-right-from-bracket me-2"></i></i>Wyloguj</button>';
+    div_wyloguj = '<span class="me-3" style="color: white;"><i class="fa-solid fa-user me-2"></i>admin</span><button type="button" class="btn btn-primary btn-lg btn-login" onclick="toggleLogin()"><i class="fa-solid fa-right-from-bracket me-2"></i></i>Wyloguj</button>';
+    div_powrót = '<button type="button" class="btn btn-primary btn-lg btn-login"><i class="fas fa-angle-left me-2"></i>Powrót dupa</button>'
 
-    // element.innerHTML= div_zaloguj;
-    element.innerHTML= div_wyloguj;
+    if (document.title === "Miejsca") {
+        element.innerHTML= '<button type="button" class="btn btn-primary btn-lg btn-login"><i class="fas fa-angle-left me-2"></i>Powrót</button>'
+    }
+
+    else{
+
+        if (czyZalogowany === 1) {
+            element.innerHTML= div_wyloguj;
+        }
+        
+        else {
+            element.innerHTML= div_zaloguj;
+        }
+    }
+}
+
+function loginCheck() {
+    console.log("wykonana funkcja: loginCheck")
+
+    div_zaloguj = '<button type="button" class="btn btn-primary btn-lg btn-login" onclick="toggleLogin()"><i class="fa-solid fa-user me-2"></i>Zaloguj</button>';
+
+    if (czyZalogowany === 1) {
+        element.innerHTML= div_zaloguj;
+        czyZalogowany = 0;
+    }
+}
+
+function toggleFlyWindow() {
+    console.log("wykonana funkcja: toggleLogin")
+
+           if (document.getElementById("fly_window").classList.contains("visible")) {
+            document.getElementById("fly_window").classList.remove("visible");
+            document.getElementById("shadow").classList.remove("visible");
+        }
+        else{
+            document.getElementById("fly_window").classList.add("visible");
+            document.getElementById("shadow").classList.add("visible");
+        }
+
 }

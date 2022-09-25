@@ -94,6 +94,10 @@ h1{
     visibility: hidden;
 }
 
+#fly_window {
+    visibility: hidden;
+}
+
 @media only screen and (max-width: 992px) {
     .header-sticky{
         height: 210px !important

@@ -24,7 +24,7 @@
 
                 <div id="login-button-1" class="col-12 col-lg-4 text-center text-lg-end p-1 p-lg-4">
                     <span class="me-3" style="color: white;"><i class="fa-solid fa-user me-2"></i>admin</span>
-                    <!-- <button type="button" class="btn btn-primary btn-lg btn-login" onclick="toggleLogin()"><i class="fa-solid fa-user me-2"></i>Zaloguj</button> -->
+                    <!-- <button type="button" class="btn btn-primary btn-lg btn-login" onclick="loginCheck()"><i class="fa-solid fa-user me-2"></i>Zaloguj</button> -->
                 </div>
             </div>
         </div>
@@ -102,11 +102,11 @@
                             <option value="Katowice">Katowice</option>
                         </select>
 
-                        <h5 class="mb-3">Wybierz datę odlotu</h5>
+                        <h5 class="mb-3">Wybierz datę odlotu:</h5>
                             
                         <input id="startDate" class="datebt mb-3" type="date" required>
 
-                        <h5 class="mb-3">Podaj liczbę pasażerów</h5>
+                        <h5 class="mb-3">Podaj liczbę pasażerów:</h5>
 
                         <input id="passengersNumber" type="number" class="form-control mb-3" min="1" required>
 
@@ -118,7 +118,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="card h-100 w-100">
 
-                        <div id="inpl-weather-main" class="inpl-weather-main" data-langId="1" data-unitId="E" data-icT="1" data-cId="36917" data-clBg="ffffff" data-clTxt="4696b9" data-clLink="5e7dc9" data-txtDesc="1" data-fTemp="1" data-crPs="0" data-crWind="1" data-fr="1" data-wdh="300" data-hIf="400" data-d="//widgets.interia.pl" style="position:relative; width: 300px; color: #5e7dc9; background-color:#ffffff"><div id="inpl-weather-links" style="display:flex;flex-flow:row wrap;justify-content:space-around;padding:0 8px 8px;text-align:center"><a id="wlHbh" style="color:inherit;font-size:13px;text-decoration:none;margin:4px;" href="https://pogoda.interia.pl/prognoza-szczegolowa-the-city-name,cId,36917">Godzina po godzinie</a><a id="wlfr" style="color:inherit;font-size:13px;text-decoration:none;margin:4px;" href="https://pogoda.interia.pl/prognoza-dlugoterminowa-the-city-name,cId,36917">Na 45 dni</a></div></div><script>!(function(t,n,e){var r,o;t.getElementById(e)||(r=t.getElementsByTagName(n)[0],(o=t.createElement(n)).id=e,o.src="//w.iplsc.com/widget/weather-2.0.2.jssc",r.parentNode.appendChild(o))})(document,"script","widget-js")</script>
+                        <div id="inpl-weather-main" class="inpl-weather-main mx-auto" data-langId="1" data-unitId="E" data-icT="1" data-cId="36917" data-clBg="ffffff" data-clTxt="4696b9" data-clLink="5e7dc9" data-txtDesc="1" data-fTemp="1" data-crPs="0" data-crWind="1" data-fr="1" data-wdh="300" data-hIf="400" data-d="//widgets.interia.pl" style="position:relative; width: 300px; color: #5e7dc9; background-color:#ffffff"><div id="inpl-weather-links" style="display:flex;flex-flow:row wrap;justify-content:space-around;padding:0 8px 8px;text-align:center"><a id="wlHbh" style="color:inherit;font-size:13px;text-decoration:none;margin:4px;" href="https://pogoda.interia.pl/prognoza-szczegolowa-the-city-name,cId,36917">Godzina po godzinie</a><a id="wlfr" style="color:inherit;font-size:13px;text-decoration:none;margin:4px;" href="https://pogoda.interia.pl/prognoza-dlugoterminowa-the-city-name,cId,36917">Na 45 dni</a></div></div><script>!(function(t,n,e){var r,o;t.getElementById(e)||(r=t.getElementsByTagName(n)[0],(o=t.createElement(n)).id=e,o.src="//w.iplsc.com/widget/weather-2.0.2.jssc",r.parentNode.appendChild(o))})(document,"script","widget-js")</script>
 
                     </div>
                 </div>
@@ -155,19 +155,39 @@
         <div id="shadow" onclick="toggleLogin()"></div>
         </div>
 <!-- ------------------------------------------------------------FLY WINDOW--------------------------------------------------------------------- -->
-        <form id="fly_window" class="card p-3 position-fixed visible" onsubmit="return false" style="width: 360px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 15;">
+        <form id="fly_window" class="card p-3 position-fixed" onsubmit="return false" style="width: 360px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 15;">
             <h2 class="text-center">Dostępne loty</h2>
             <h4 class="my-3">Proszę wybrać lot:</h4>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label border p-2 mb-3" for="flexRadioDefault1">
-                  Dzień: <br>
-                  Godzina: <br>
-                  Miasto: <br>
-                  Samolot:
+                <input class="form-check-input" type="radio" name="lot" id="lot" required>
+                <label class="form-check-label border p-2 mb-3" for="lot">
+                  Dzień wylotu: <span id="flight_date"></span><br>
+                  Godzina wylotu: <span id="flight_hour"></span><br>
+                  Miasto wylotu: <span id="flight_city"></span><br>
+                  Samolot: <span id="flight_aircraft"></span><br>
+                  Cena: <span id="flight_price"></span>
                 </label>
-              </div>
+            </div>
+
+            <h4 class="my-3">Proszę wybrać opcję bagażu:</h4>
+
+            <div class="form-check">
+                <div>
+                    <input class="form-check-input" type="radio" name="bagaz" id="bagaz1" required>
+                    <label class="form-check-label border p-2 mb-3" for="bagaz1">
+                        Bagaż podręczyn (bez dopłaty)
+                    </label>
+                </div>
+
+                <div>
+                    <input class="form-check-input" type="radio" name="bagaz" id="bagaz2" required>
+                    <label class="form-check-label border p-2 mb-3" for="bagaz2">
+                        Bagaż rejestrowany (+ 50zł od miejsca)
+                    </label>
+                </div>
+            </div>
+            
 
             <div class="row">
                 <div class="col-12 col-lg-6">
@@ -177,7 +197,7 @@
                 </div>
 
                 <div class="col-12 col-lg-6">
-                    <button type="button" class="btn btn-primary btn-lg btn-login w-100">
+                    <button type="button" id="close_fly_window" class="btn btn-primary btn-lg btn-login w-100">
                         <i class="fa-solid fa-xmark" style="padding-right: 5px;"></i>Zamknij
                     </button> 
                 </div>
@@ -199,7 +219,7 @@
                     <a href="#"><span>PODRÓŻE SAMOLOTEM</span></a>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-3 text-center">
+                <div class="col-12 col-md-6 col-lg-3 text-center mb-3">
                     <a href="#"><span>WYKONANIE: ŁUKASZ NOCKOWSKI</span></a>
                 </div>
             </div>
