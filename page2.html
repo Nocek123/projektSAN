@@ -40,7 +40,7 @@
     
     <div class="row">
 
-        <button id="zatwierdz_lot" class="btn btn-primary btn-lg btn-login w-25 mx-auto my-3">Zaakceptuj wybór</button>
+        <button id="zatwierdz_lot" class="btn btn-primary btn-lg btn-login w-25 mx-auto my-3" onclick="togglePodsumowanie();podsumowanie();">Zaakceptuj wybór</button>
     </div>
 
     <!-- ---------------------------------------------------------------FOOTER --------------------------------------------------------------->
@@ -65,6 +65,41 @@
                 </div>
             </div>
         </div>
+    </div>
+
+<!-- WIDOK PODSUMOWUJĄCY -->
+
+    <div id="podsumowanie" class="card p-3 position-fixed" onsubmit="return false" style="top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 15; max-width: 350px;">
+        <h2 class="text-center">Gratulacje!</h2>
+        <h5 class="my-3">Od rezerwacji dzieli Cię już tylko jeden krok!<br><br>
+        Sprawdź, czy poniższe dane się zgadzają i potwierdź przyciskiem "Ok!" aby dokonać rezerwacji biletów</h4>
+
+        <div id="podsum_dane" class="mb-3">
+            Dzień wylotu: <span id="p_date"></span><br>
+            Godzina wylotu: <span id="p_hour"></span><br>
+            Miasto wylotu: <span id="p_city"></span><br>
+            Samolot: <span id="p_aircraft"></span><br>
+            Miasto docelowe: <span id="p_price"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <button id="zalogujSie" class="btn btn-primary btn-lg btn-login w-100">
+                    <i class="fa-solid fa-check" style="padding-right: 5px;"></i>Ok!
+                </button>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <button type="button" class="btn btn-primary btn-lg btn-login w-100" onclick="togglePodsumowanie()">
+                    <i class="fa-solid fa-xmark" style="padding-right: 5px;"></i>Zamknij
+                </button> 
+            </div>
+
+    
+        </div>
+    </div>
+
+    <div id="shadow" onclick="toggleLogin()"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="script.js"></script> 

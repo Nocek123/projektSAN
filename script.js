@@ -304,3 +304,28 @@ function toggleFlyWindow() {
         }
 
 }
+
+function togglePodsumowanie() {
+    console.log("wykonana funkcja: toggleLogin")
+
+           if (document.getElementById("podsumowanie").classList.contains("visible")) {
+            document.getElementById("podsumowanie").classList.remove("visible");
+            document.getElementById("shadow").classList.remove("visible");
+        }
+        else{
+            document.getElementById("podsumowanie").classList.add("visible");
+            document.getElementById("shadow").classList.add("visible");
+        }
+
+}
+
+function podsumowanie() {
+    document.getElementById("p_date").innerHTML=`${aircraft}`;
+    document.getElementById("p_hour").innerHTML=`${aircraft}`;
+    document.getElementById("p_city").innerHTML=`${aircraft}`;
+    document.getElementById("p_aircraft").innerHTML=`${aircraft}`;
+    document.getElementById("p_price").innerHTML=`${aircraft}`;
+};
+
+
+// ------------------------------------------------------------------------- pogoda 
